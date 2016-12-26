@@ -1,3 +1,3 @@
 # quote-bot
 
-This is a telegram bot, which sends a random quote if a certain keyword is used.
+This is a telegram bot, that sends a random quote when a certain keyword is used.
