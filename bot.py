@@ -40,7 +40,7 @@ with open(sys.argv[1]) as file:
         print('Unable to read quotes')
 
 
-with open(sys.argv[1]) as file:
+with open(sys.argv[2]) as file:
     try:
         keywords = yaml.load(file.read())['keywords']
     except:
