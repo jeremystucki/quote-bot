@@ -51,7 +51,7 @@ def handle(message):
     if 'text' not in message:
         return
 
-    if not any(keyword in message['text'] for keyword in keywords):
+    if not any(keyword in message['text'].lower() for keyword in keywords):
         return
 
     bot.sendMessage(message['chat']['id'], random.choice(quotes))
