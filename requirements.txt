@@ -1,2 +1,2 @@
-pyyaml
-telepot
+pyyaml == 3.12
+telepot == 12.1
