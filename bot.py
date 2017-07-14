@@ -14,6 +14,9 @@ except telepot.exception.BadHTTPResponse:
     exit(1)
 
 
+me = bot.getMe()
+
+
 def usage():
     print('bot.py quotes.yml keywords.yml')
 
@@ -47,7 +50,9 @@ with open(sys.argv[2]) as file:
 
 
 def handle(message):
-    with open('/var/log/gabor/bot.log', 'a') as file:
+    message['to'] = me
+
+    with open('/var/log/quote-bot/messages.log', 'a') as file:
         file.write(json.dumps(message) + '\n')
 
     if 'text' not in message:
