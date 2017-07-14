@@ -35,14 +35,14 @@ if not os.path.exists(sys.argv[2]):
     exit(0)
 
 
-with open(sys.argv[1]) as file:
+with open(sys.argv[1], encoding='utf8') as file:
     try:
         quotes = yaml.load(file.read())['quotes']
     except:
         print('Unable to read quotes')
 
 
-with open(sys.argv[2]) as file:
+with open(sys.argv[2], encoding='utf8') as file:
     try:
         keywords = yaml.load(file.read())['keywords']
     except:
