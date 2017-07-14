@@ -1,3 +1,4 @@
+import json
 import os
 import sys
 import random
@@ -6,12 +7,18 @@ import time
 import telepot
 import yaml
 
+try:
+    bot = telepot.Bot(os.environ['TELEGRAM_API_KEY'])
+except telepot.exception.BadHTTPResponse:
+    print('TELEGRAM_API_KEY not set')
+    exit(1)
+
 
 def usage():
-    print('bot.py quotes.yml keywords.yml <token>')
+    print('bot.py quotes.yml keywords.yml')
 
 
-if len(sys.argv) != 4:
+if len(sys.argv) != 3:
     usage()
     exit(0)
 
@@ -22,14 +29,6 @@ if not os.path.exists(sys.argv[1]):
 
 if not os.path.exists(sys.argv[2]):
     print(sys.argv[2] + ' does not exist')
-    exit(0)
-
-
-bot = None
-try:
-    bot = telepot.Bot(sys.argv[3])
-except:
-    print('Unable to instantiate the bot')
     exit(0)
 
 
@@ -48,6 +47,9 @@ with open(sys.argv[2]) as file:
 
 
 def handle(message):
+    with open('/var/log/gabor/bot.log', 'a') as file:
+        file.write(json.dumps(message))
+
     if 'text' not in message:
         return
 
