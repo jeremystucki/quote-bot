@@ -48,7 +48,7 @@ with open(sys.argv[2]) as file:
 
 def handle(message):
     with open('/var/log/gabor/bot.log', 'a') as file:
-        file.write(json.dumps(message))
+        file.write(json.dumps(message) + '\n')
 
     if 'text' not in message:
         return
