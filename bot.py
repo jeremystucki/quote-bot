@@ -52,14 +52,14 @@ with open(sys.argv[2], encoding='utf8') as file:
 def handle(message):
     message['to'] = me
 
+    with open('/var/log/quote-bot/messages.log', 'a') as file:
+        file.write(json.dumps(message) + '\n')
+
     if 'text' not in message:
         return
 
     if not any(keyword in message['text'].lower() for keyword in keywords):
         return
-
-    with open('/var/log/quote-bot/messages.log', 'a') as file:
-        file.write(json.dumps(message) + '\n')
 
     bot.sendMessage(message['chat']['id'], random.choice(quotes))
 
